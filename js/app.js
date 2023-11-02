@@ -170,3 +170,14 @@ function takePhoto() {
       alert("Error: " + err);
     });
 }
+// app.js
+function getStream(type) {
+  // Implementierung der getStream-Funktion
+}
+
+function takePhoto() {
+  // Implementierung der takePhoto-Funktion
+}
+
+// Rest des JavaScript-Codes
+
