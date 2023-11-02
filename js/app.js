@@ -162,3 +162,11 @@ function takePhoto() {
       theImageTag.src = URL.createObjectURL(blob);
     })
     .catch(err => alert('Error: ' + err));
+
+  function takePhoto() {
+    // Funktionstext hier
+}
+
+function getStream() {
+    // Funktionstext hier
+}
