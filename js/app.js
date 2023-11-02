@@ -62,3 +62,15 @@ if ("serviceWorker" in navigator) {
       .catch(err => console.log("service worker not registered", err));
   });
 }
+<div class="columns">
+  <div class="column">
+    <p><button type="button" onclick="getStream('video')">Grab video</button></p>
+    
+    <video controls autoplay style="height:180px; width: 240px;"></video>
+  </div>
+  <div class="column">
+    <p><button type="button" onclick="getStream('audio')">Grab audio</button></p>
+    
+    <audio controls></audio>
+  </div>
+</div>
