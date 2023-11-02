@@ -1,31 +1,113 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Dev'Coffee PWA</title>
-  </head>
-  <body>
-    <main>
-     <div class="columns">
-  <div class="column">
-    <p><button type="button" onclick="getStream('video')">Grab video</button></p>
-    
-    <video controls autoplay style="height:180px; width: 240px;"></video>
-  </div>
-  <div class="column">
-    <p><button type="button" onclick="getStream('audio')">Grab audio</button></p>
-    
-    <audio controls></audio>
-  </div>
-</div>
-    </main>
-    <script src="js/app.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <!-- ios support -->
+  <link rel="apple-touch-icon" href="images/icons/icon-72x72.png">
+  <link rel="apple-touch-icon" href="images/icons/icon-96x96.png">
+  <link rel="apple-touch-icon" href="images/icons/icon-128x128.png">
+  <link rel="apple-touch-icon" href="images/icons/icon-144x144.png">
+  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+  <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
+  <link rel="apple-touch-icon" href="images/icons/icon-384x384.png">
+  <link rel="apple-touch-icon" href="images/icons/icon-512x512.png">
+  <meta name="apple-mobile-web-app-status-bar" content="#db4938">
+  <meta name="theme-color" content="#db4938">
+  <title>Mobile Anwendung Praktikum PWA</title>
+</head>
+
+<body>
+  <main>
+
+    </div>
+    <nav>
+      <h1>Donika Mobile Anwendung Praktikum</h1>
+      <!-- <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Blog</li>
+      </ul> -->
+    </nav>
+      <!------------------------------ Praktikum 1------------------------------------------->
+    <div class="columns">
+      <div class="column">
+        <p><button type="button" onclick="getStream('video')">Grab video</button>
+          <video controls autoplay style="height:180px; width: 240px;"></video>
+      </div>
+
+      <button id="askButton">Ask for location</button>
+      <div id="target">
+      </div>
+
+      <div class="column">
+        <p><button type="button" onclick="getStream('audio')">Grab audio</button></p>
+
+        <audio controls></audio>
+      </div>
+        <!------------------------------ Praktikum 2 ------------------------------------------->
+      <table>
+        <tr>
+          <td>Tilt Left/Right [gamma]</td>
+          <td id="doTiltLR"></td>
+        </tr>
+        <tr>
+          <td>Tilt Front/Back [beta]</td>
+          <td id="doTiltFB"></td>
+        </tr>
+        <tr>
+          <td>Direction [alpha]</td>
+          <td id="doDirection"></td>
+        </tr>
+      </table>
+      <p>
+        <label>Engine</label>
+      </p>
+      <div role="group" id="selectEngine">
+        <input type="radio" name="engine" value="localStorage" checked /> Persistent Storage
+        <input type="radio" name="engine" value="sessionStorage" /> Per-Session Storage
+      </div>
+
+      <p>
+        <label for="value">Value for <code>myKey</code></label>
+        <input type="text" id="value">
+      </p>
+
+      <p>Open the example in another tab and change the value there to see the synchronization via <code>storage</code>
+        event.</p>
+      <div id="target"></div>
+      <div class="columns">
+        <div class="column">
+          <button class="btn-file">
+            Choose some files to read<br>(File API) <input type="file" onchange="readFiles(this.files)" multiple>
+          </button>
+
+          <p>Number of selected files: <b id="count">N/A</b></p>
+        </div>
+        <div class="column">
+          <button class="btn-file" onclick="writeFile()">
+            Choose file to create or overwrite<br>(Native File System API)
+          </button>
+          <br><br><br>
+        </div>
+      </div>
+
+  
+
+      <!-- <div id="logoContainer">
+        <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_512.png" id="imgLogo">
+      </div> -->
+
+      <!-- <p><small>Demo from <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank" rel="noopener">HTML5 Rocks</a> article.</small></p> -->
+
+
+      <p id="logTarget"></p>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+
 </html>
-
-
-
