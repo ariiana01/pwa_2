@@ -1,20 +1,40 @@
 const container = document.querySelector(".container");
 const coffees = [
   {
-   
- <div class="columns">
-  <div class="column">
-    <p><button type="button" onclick="getStream('video')">Grab video</button></p>
-    
-    <video controls autoplay style="height:180px; width: 240px;"></video>
-  </div>
-  <div class="column">
-    <p><button type="button" onclick="getStream('audio')">Grab audio</button></p>
-    
-    <audio controls></audio>
-  </div>
-</div>
- 
+    name: "Perspiciatis",
+    image: "images/coffee1.jpg"
+  },
+  {
+    name: "Voluptatem",
+    image: "images/coffee2.jpg"
+  },
+  {
+    name: "Explicabo",
+    image: "images/coffee3.jpg"
+  },
+  {
+    name: "Rchitecto",
+    image: "images/coffee4.jpg"
+  },
+  {
+    name: " Beatae",
+    image: "images/coffee5.jpg"
+  },
+  {
+    name: " Vitae",
+    image: "images/coffee6.jpg"
+  },
+  {
+    name: "Inventore",
+    image: "images/coffee7.jpg"
+  },
+  {
+    name: "Veritatis",
+    image: "images/coffee8.jpg"
+  },
+  {
+    name: "Accusantium",
+    image: "images/coffee9.jpg"
   }
 ];
 const showCoffees = () => {
