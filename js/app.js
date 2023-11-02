@@ -181,3 +181,47 @@ function takePhoto() {
 
 // Rest des JavaScript-Codes
 
+
+// app.js
+const videoElement = document.getElementById('videoElement'); // Video-Element in HTML
+const audioElement = document.getElementById('audioElement'); // Audio-Element in HTML
+
+function getStream(type) {
+  if (!navigator.mediaDevices && !navigator.getUserMedia && !navigator.webkitGetUserMedia && !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
+    alert('User Media API not supported.');
+    return;
+  }
+
+  var constraints = {};
+  constraints[type] = true;
+
+  getUserMedia(constraints)
+    .then(function (stream) {
+      if (type === 'video') {
+        if ('srcObject' in videoElement) {
+          videoElement.srcObject = stream;
+        } else if (navigator.mozGetUserMedia) {
+          videoElement.mozSrcObject = stream;
+        } else {
+          videoElement.src = (window.URL || window.webkitURL).createObjectURL(stream);
+        }
+
+        videoElement.play();
+      } else if (type === 'audio') {
+        if ('srcObject' in audioElement) {
+          audioElement.srcObject = stream;
+        } else if (navigator.mozGetUserMedia) {
+          audioElement.mozSrcObject = stream;
+        } else {
+          audioElement.src = (window.URL || window.webkitURL).createObjectURL(stream);
+        }
+
+        audioElement.play();
+      }
+    })
+    .catch(function (err) {
+      alert('Error: ' + err);
+    });
+}
+
+// Rest deines Codes
