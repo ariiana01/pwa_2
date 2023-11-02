@@ -85,43 +85,51 @@ function getStream() {
     video: true,
   };
 
-  getUserMedia(constraints, function (stream) {
-    var mediaControl = document.querySelector("video");
-    if ("srcObject" in mediaControl) {
-      mediaControl.srcObject = stream;
-    } else if (navigator.mozGetUserMedia) {
-      mediaControl.mozSrcObject = stream;
-    } else {
-      mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
-    }
-    theStream = stream;
-  }, function (err) {
-    alert("Error: " + err);
-  });
+ function getUserMedia(constraints) {
+  // if Promise-based API is available, use it
+  if (navigator.mediaDevices) {
+    return navigator.mediaDevices.getUserMedia(constraints);
+  }
+    
+  // otherwise try falling back to old, possibly prefixed API...
+  var legacyApi = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    
+  if (legacyApi) {
+    // ...and promisify it
+    return new Promise(function (resolve, reject) {
+      legacyApi.bind(navigator)(constraints, resolve, reject);
+    });
+  }
 }
 
-function takePhoto() {
-  if (!("ImageCapture" in window)) {
-    alert("ImageCapture is not available");
+function getStream (type) {
+  if (!navigator.mediaDevices && !navigator.getUserMedia && !navigator.webkitGetUserMedia &&
+    !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
+    alert('User Media API not supported.');
     return;
   }
 
-  if (!theStream) {
-    alert("Grab the video stream first!");
-    return;
-  }
-
-  var theImageCapturer = new ImageCapture(theStream.getVideoTracks()[0]);
-
-  theImageCapturer.takePhoto()
-    .then(function (blob) {
-      var theImageTag = document.getElementById("imageTag");
-      theImageTag.src = URL.createObjectURL(blob);
+  var constraints = {};
+  constraints[type] = true;
+  
+  getUserMedia(constraints)
+    .then(function (stream) {
+      var mediaControl = document.querySelector(type);
+      
+      if ('srcObject' in mediaControl) {
+        mediaControl.srcObject = stream;
+      } else if (navigator.mozGetUserMedia) {
+        mediaControl.mozSrcObject = stream;
+      } else {
+        mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+      }
+      
+      mediaControl.play();
     })
     .catch(function (err) {
-      alert("Error: " + err);
+      alert('Error: ' + err);
     });
-}
 // app.js
 function getStream(type) {
   // Implementierung der getStream-Funktion
@@ -132,4 +140,9 @@ function takePhoto() {
 }
 
 // Rest des JavaScript-Codes
+
+
+
+
+
 
