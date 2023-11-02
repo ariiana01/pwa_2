@@ -163,10 +163,4 @@ function takePhoto() {
     })
     .catch(err => alert('Error: ' + err));
 
-  function takePhoto() {
-    // Funktionstext hier
-}
-
-function getStream() {
-    // Funktionstext hier
-}
+  
