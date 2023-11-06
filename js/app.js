@@ -98,7 +98,7 @@ function startRecording(stream) {
     
     localStorage.setItem('recordedVideo', recordedBlob);
 
-/*     // Optional: Ein Video-Element hinzufügen, um die Aufnahme anzuzeigen
+/*     //Optional: Ein Video-Element hinzufügen, um die Aufnahme anzuzeigen
     var videoPlayer = document.createElement('video');
     videoPlayer.src = URL.createObjectURL(recordedBlob);
     videoPlayer.controls = true;
